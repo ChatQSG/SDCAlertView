@@ -5,6 +5,7 @@ let kVerticalActionSeparator = "vertical"
 
 final class ActionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
+    var shouldHideTopSeparator = false
     var visualStyle: AlertVisualStyle?
 
     override static var layoutAttributesClass: AnyClass {
@@ -55,11 +56,13 @@ final class ActionsCollectionViewFlowLayout: UICollectionViewFlowLayout {
         attributes.zIndex = itemAttributes.zIndex + 1
         attributes.backgroundColor = self.visualStyle?.actionViewSeparatorColor
 
+        let defaultThick = self.visualStyle?.actionViewSeparatorThickness ?? 0.5
+        let thick = indexPath.row == 0 ? (shouldHideTopSeparator ? 0 : defaultThick) : defaultThick
         var decorationViewFrame = itemAttributes.frame
         if elementKind == kHorizontalActionSeparator {
-            decorationViewFrame.size.height = self.visualStyle?.actionViewSeparatorThickness ?? 0.5
+            decorationViewFrame.size.height = thick
         } else {
-            decorationViewFrame.size.width = self.visualStyle?.actionViewSeparatorThickness ?? 0.5
+            decorationViewFrame.size.width = thick
         }
 
         attributes.frame = decorationViewFrame
