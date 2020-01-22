@@ -81,7 +81,7 @@ final class ActionSheetView: UIView, AlertControllerViewRepresentable {
     }
 
     private func prepareCollectionView() {
-        if let actionsCollectionViewFlowLayout = self.actionsCollectionView.collectionViewLayout as? ActionsCollectionViewFlowLayout { actionsCollectionViewFlowLayout.shouldHideTopSeparator = title == nil && message == nil
+        if let actionsCollectionViewFlowLayout = self.actionsCollectionView.collectionViewLayout as? ActionsCollectionViewFlowLayout { actionsCollectionViewFlowLayout.shouldHideTopSeparator = title == nil && message == nil && contentView.subviews.isEmpty
         }
         self.actionsCollectionView.actions = self.actions
         self.actionsCollectionView.visualStyle = self.visualStyle
